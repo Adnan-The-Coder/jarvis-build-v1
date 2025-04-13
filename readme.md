@@ -92,4 +92,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 # 👨‍💻 Author
 Made with ❤️ by ADNAN
-Connect with me on LinkedIn | GitHub
+Connect with me on [LinkedIn](https://www.linkedin.com/in/syedadnanali99/) | [GitHub](https://github.com/Adnan-The-Coder)
