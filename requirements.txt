@@ -18,3 +18,5 @@ winshell
 html5lib
 pyaudio
 pywin32
+pygame
+playsound

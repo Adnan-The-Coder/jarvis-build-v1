@@ -1,88 +1,189 @@
-import subprocess
+try:
+	import os 
+	import subprocess
 
-import wolframalpha
+	import wolframalpha
 
-import pyttsx3
+	import pyttsx3
 
-import tkinter
+	import tkinter
 
-import keyboard
+	import keyboard
 
-from keyboard import press 
+	from keyboard import press 
 
-from keyboard import write
+	from keyboard import write
 
-from time import sleep
+	from time import sleep
 
-import json
+	import json
 
-# import clint
+	# import clint
 
-import psutil
+	import psutil
 
-import platform
+	import platform
 
-from datetime import datetime
+	from datetime import datetime
 
-import random
+	import random
 
-import requests
+	import requests
 
-from bs4 import BeautifulSoup
+	from bs4 import BeautifulSoup
 
-import bs4
+	import bs4
 
-import screen_brightness_control as sbc
+	import screen_brightness_control as sbc
 
-import operator
+	import operator
 
-import speech_recognition as sr
+	import speech_recognition as sr
 
-import datetime
+	import datetime
 
-import wikipedia
+	import wikipedia
 
-import webbrowser
+	import webbrowser
 
-import os
+	import os
 
-from os import spawnle, startfile
+	from os import spawnle, startfile
 
-from pyautogui import click
+	from pyautogui import click
 
-import keyboard
+	import keyboard
 
-from keyboard import press 
+	from keyboard import press 
 
-from keyboard import write
+	from keyboard import write
 
-from time import sleep
+	from time import sleep
 
-import winshell
+	import winshell
 
-import pyjokes
+	import pyjokes
 
-# import feedparser
+	# import feedparser
 
-import smtplib
+	import smtplib
 
-import ctypes
+	import ctypes
 
-import time
+	import time
 
-import requests
+	import requests
 
-import shutil
+	import shutil
 
-# from twilio.rest import Client
+	# from twilio.rest import Client
 
-# from clint.textui import progress
+	# from clint.textui import progress
 
-from bs4 import BeautifulSoup
+	from bs4 import BeautifulSoup
 
-import win32com.client as wincl
+	import win32com.client as wincl
+	try:
+		import playsound
+	except:
+		import pygame
 
-from urllib.request import urlopen
+	from urllib.request import urlopen
+except:
+	import os
+	try:
+		os.system('pip install -r requirements.txt')
+	except:
+		pass
+	import subprocess
+
+	import wolframalpha
+
+	import pyttsx3
+
+	import tkinter
+
+	import keyboard
+	try:
+		import playsound
+	except:
+		import pygame
+
+	from keyboard import press 
+
+	from keyboard import write
+
+	from time import sleep
+
+	import json
+
+	# import clint
+
+	import psutil
+
+	import platform
+
+	from datetime import datetime
+
+	import random
+
+	import requests
+
+	from bs4 import BeautifulSoup
+
+	import bs4
+
+	import screen_brightness_control as sbc
+
+	import operator
+
+	import speech_recognition as sr
+
+	import datetime
+
+	import wikipedia
+
+	import webbrowser
+
+	import os
+
+	from os import spawnle, startfile
+
+	from pyautogui import click
+
+	import keyboard
+
+	from keyboard import press 
+
+	from keyboard import write
+
+	from time import sleep
+
+	import winshell
+
+	import pyjokes
+
+	# import feedparser
+
+	import smtplib
+
+	import ctypes
+
+	import time
+
+	import requests
+
+	import shutil
+
+	# from twilio.rest import Client
+
+	# from clint.textui import progress
+
+	from bs4 import BeautifulSoup
+
+	import win32com.client as wincl
+
+	from urllib.request import urlopen
 
 
 
@@ -93,12 +194,30 @@ engine.setProperty('voice', voices[0].id)
 
 
 owner = "ADNAN"
-my_current_location = "jodhpur"
+my_current_location = "Hyderabad"
 
 
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
+
+import pygame
+import threading
+
+def play_audio_background(file_path: str, volume: float = 0.1):
+    def _play():
+        pygame.init()
+        pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=4096)
+        try:
+            pygame.mixer.music.load(file_path)
+            pygame.mixer.music.set_volume(volume)  # Lower volume for background music
+            pygame.mixer.music.play()
+        except pygame.error as e:
+            print(f"Error loading or playing sound: {e}")
+
+    # Start background audio in a new thread
+    threading.Thread(target=_play, daemon=True).start()
+
 
 def wishMe():
     hour = int(datetime.datetime.now().hour)
@@ -112,25 +231,30 @@ def wishMe():
         speak("Good Evening Sir !" ) 
 
 speak("initializing jarvis")
+play_audio_background("./assets/iron Man initializations.mp3")
 wishMe()
 speak("starting all system applications")
-# speak("installing and checking all drivers")
-# speak("calibrating and analysing all the core processors")
+speak("installing and checking all drivers")
+speak("calibrating and analysing all the core processors")
 speak("checking the internet connection")
-url = "http://www.vedantu.com"
+url = "http://www.youtube.com"
 timeout = 5
 try:
 	request = requests.get(url, timeout=timeout)
 	print("Connected to the Internet")
 	speak("INTERNET connection detected")
-	# speak("all drivers are up and running , all systems have been activated")
-	# speak("now i am online")
+	speak("all drivers are up and running , all systems have been activated")
+	speak("now i am online")
 except (requests.ConnectionError, requests.Timeout) as exception:
 	print("No internet connection  ")
 	speak("No internet connection detected .")
 	speak("Shutting down the program.")
 	speak("Thanks for giving me your time")
-	#playsound("C:\\Users\\ALI\\OneDrive\\Desktop\\jarvis\\database_jarvis_highly_integrated_smart_data\\audio_files_database\\system_sound_effects\\power down.mp3")
+	try:
+		playsound("./assets/power down.mp3")
+	except:
+		play_audio("./assets/power down.mp3")
+
 	exit()
 
 
@@ -313,12 +437,6 @@ if __name__ == '__main__':
 		elif 'open google' in query:
 			speak("Here you go to Google\n")
 			webbrowser.open("https://www.google.com/")
-
-
-		elif 'open vedantu' in query:
-			speak("opening vedantu")
-			webbrowser.open("https://www.vedantu.com/")
-
 
 		elif 'the time' in query:
 			from datetime import datetime
@@ -521,12 +639,12 @@ if __name__ == '__main__':
 			# CPU usage
 			print("CPU Usage Per Core:")
 			speak("the cpu usage per core is")
-			for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)):
+			for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)):		
     				print(f"Core {i}: {percentage}%")
-
+			total_cpu = psutil.cpu_percent()
 			speak(f"Core {i}: {percentage}%")
-			print(f"Total CPU Usage: {psutil.cpu_percent()}%")
-			speak(f"Total CPU Usage: {psutil.cpu_percent()}%")
+			print(f"Total CPU Usage: {total_cpu}%")
+			speak(f"Total CPU Usage: {total_cpu}%")
 
 
 		elif 'memory information' in query:
