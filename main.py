@@ -253,7 +253,7 @@ except (requests.ConnectionError, requests.Timeout) as exception:
 	try:
 		playsound("./assets/power down.mp3")
 	except:
-		play_audio("./assets/power down.mp3")
+		play_audio_background("./assets/power down.mp3")
 
 	exit()
 
