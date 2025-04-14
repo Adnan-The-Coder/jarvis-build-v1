@@ -24,8 +24,6 @@ try:
 
 	import platform
 
-	from datetime import datetime
-
 	import random
 
 	import requests
@@ -122,8 +120,6 @@ except:
 	import psutil
 
 	import platform
-
-	from datetime import datetime
 
 	import random
 
@@ -231,20 +227,20 @@ def wishMe():
         speak("Good Evening Sir !" ) 
 
 speak("initializing jarvis")
-play_audio_background("./assets/iron Man initializations.mp3")
-wishMe()
-speak("starting all system applications")
-speak("installing and checking all drivers")
-speak("calibrating and analysing all the core processors")
-speak("checking the internet connection")
+# play_audio_background("./assets/iron Man initializations.mp3")
+# wishMe()
+# speak("starting all system applications")
+# speak("installing and checking all drivers")
+# speak("calibrating and analysing all the core processors")
+# speak("checking the internet connection")
 url = "http://www.youtube.com"
 timeout = 5
 try:
 	request = requests.get(url, timeout=timeout)
 	print("Connected to the Internet")
-	speak("INTERNET connection detected")
-	speak("all drivers are up and running , all systems have been activated")
-	speak("now i am online")
+	# speak("INTERNET connection detected")
+	# speak("all drivers are up and running , all systems have been activated")
+	# speak("now i am online")
 except (requests.ConnectionError, requests.Timeout) as exception:
 	print("No internet connection  ")
 	speak("No internet connection detected .")
@@ -380,7 +376,7 @@ def bluetooth_switch_on():
 	sleep(1)
 	click(x=1416, y=752)
 	sleep(2)
-	speak("connecting to JBL speaker")
+	speak("connecting to the bluetooth device")
 
 
 def battery_saver_switch_on():
@@ -422,11 +418,14 @@ if __name__ == '__main__':
 		
 		if 'wikipedia' in query:
 			speak('Searching Wikipedia...')
-			query = query.replace("wikipedia", "")
-			results = wikipedia.summary(query, sentences = 3)
-			speak("According to Wikipedia")
-			print(results)
-			speak(results)
+			try:
+				query = query.replace("wikipedia", "")
+				results = wikipedia.summary(query, sentences = 3)
+				speak("According to Wikipedia")
+				print(results)
+				speak(results)
+			except Exception as e:
+				print("Error: ", e)
 
 
 		elif 'open youtube' in query:
@@ -502,7 +501,7 @@ if __name__ == '__main__':
 
 
 		elif 'reason for you' in query:
-			speak("I was created by Mister ADNAN ")
+			speak("I was coded by Mister ADNAN ")
 
 
 		elif 'change background' in query:
@@ -568,7 +567,7 @@ if __name__ == '__main__':
 			speak("Sir, Should i include date and time")
 			snfm = takeCommand()
 			if 'yes' in snfm or 'sure' in snfm:
-				strTime = datetime.datetime.now().strftime("% H:% M:% S")
+				strTime = str(datetime.datetime.now().strftime("%H:%M:%S"))
 				file.write(strTime)
 				file.write(" :- ")
 				file.write(note)
